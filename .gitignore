@@ -1,0 +1,78 @@
+# ==============================
+# Variables de entorno y secretos
+# ==============================
+
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+
+!.env.example
+
+# ==============================
+# Node / npm
+# ==============================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==============================
+# Next.js
+# ==============================
+
+.next/
+out/
+coverage/
+
+# ==============================
+# Flutter / Dart
+# ==============================
+
+.dart_tool/
+.packages
+.pub/
+.pub-cache/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+
+# ==============================
+# Android
+# ==============================
+
+**/android/key.properties
+*.jks
+*.keystore
+
+# ==============================
+# Supabase
+# ==============================
+
+supabase/.temp/
+supabase/.branches/
+
+# ==============================
+# Sistema operativo
+# ==============================
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==============================
+# IDE
+# ==============================
+
+.idea/
+*.iml
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

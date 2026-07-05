@@ -1,0 +1,14 @@
+{
+  "name": "cmp-gestion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Plataforma de gestión de pedidos y servicio para restaurantes",
+  "scripts": {
+    "web:dev": "npm --prefix apps/web run dev",
+    "web:build": "npm --prefix apps/web run build",
+    "web:lint": "npm --prefix apps/web run lint",
+    "staff:analyze": "cd apps/staff_app && flutter analyze",
+    "staff:test": "cd apps/staff_app && flutter test",
+    "staff:run": "cd apps/staff_app && flutter run"
+  }
+}
