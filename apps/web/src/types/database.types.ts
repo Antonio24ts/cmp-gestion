@@ -32,6 +32,187 @@ export type Database = {
         }
         Relationships: []
       }
+      dining_tables: {
+        Row: {
+          capacity: number | null
+          code: string
+          created_at: string
+          display_name: string
+          id: string
+          operational_status: Database["public"]["Enums"]["table_operational_status"]
+          restaurant_id: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          capacity?: number | null
+          code: string
+          created_at?: string
+          display_name: string
+          id?: string
+          operational_status?: Database["public"]["Enums"]["table_operational_status"]
+          restaurant_id: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          capacity?: number | null
+          code?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          operational_status?: Database["public"]["Enums"]["table_operational_status"]
+          restaurant_id?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dining_tables_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          is_active: boolean
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string
+          id: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      restaurant_staff: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          profile_id: string
+          restaurant_id: string
+          role: Database["public"]["Enums"]["staff_role"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          profile_id: string
+          restaurant_id: string
+          role: Database["public"]["Enums"]["staff_role"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          profile_id?: string
+          restaurant_id?: string
+          role?: Database["public"]["Enums"]["staff_role"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "restaurant_staff_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "restaurant_staff_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      restaurants: {
+        Row: {
+          created_at: string
+          currency_code: string
+          id: string
+          is_active: boolean
+          name: string
+          slug: string
+          timezone: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          currency_code?: string
+          id?: string
+          is_active?: boolean
+          name: string
+          slug: string
+          timezone?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          currency_code?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          slug?: string
+          timezone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      table_qr_tokens: {
+        Row: {
+          created_at: string
+          dining_table_id: string
+          id: string
+          is_active: boolean
+          public_token: string
+          revoked_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          dining_table_id: string
+          id?: string
+          is_active?: boolean
+          public_token?: string
+          revoked_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          dining_table_id?: string
+          id?: string
+          is_active?: boolean
+          public_token?: string
+          revoked_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "table_qr_tokens_dining_table_id_fkey"
+            columns: ["dining_table_id"]
+            isOneToOne: false
+            referencedRelation: "dining_tables"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -40,7 +221,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      staff_role: "ADMIN" | "WAITER" | "KITCHEN"
+      table_operational_status: "ACTIVE" | "OUT_OF_SERVICE"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -167,6 +349,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      staff_role: ["ADMIN", "WAITER", "KITCHEN"],
+      table_operational_status: ["ACTIVE", "OUT_OF_SERVICE"],
+    },
   },
 } as const
