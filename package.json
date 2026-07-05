@@ -9,6 +9,14 @@
     "web:lint": "npm --prefix apps/web run lint",
     "staff:analyze": "cd apps/staff_app && flutter analyze",
     "staff:test": "cd apps/staff_app && flutter test",
-    "staff:run": "cd apps/staff_app && flutter run"
+    "staff:run": "cd apps/staff_app && flutter run",
+    "supabase:version": "supabase --version",
+    "supabase:migrations": "supabase migration list",
+    "supabase:push:dry": "supabase db push --dry-run",
+    "supabase:push": "supabase db push",
+    "supabase:types": "supabase gen types --lang typescript --linked --schema public > apps/web/src/types/database.types.ts"
+  },
+  "devDependencies": {
+    "supabase": "^2.109.0"
   }
 }
